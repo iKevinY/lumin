@@ -115,7 +115,7 @@ void World::destroy()
 bool World::update(float elapsed_ms)
 {
 	int w, h;
-        glfwGetFramebufferSize(m_window, &w, &h);
+	glfwGetFramebufferSize(m_window, &w, &h);
 	vec2 screen = { (float)w, (float)h };
 
 	// TODO check player - Wall collisions here (but might want to do it after player has moved for the frame)
@@ -144,12 +144,12 @@ void World::draw()
 
 	// Getting size of window
 	int w, h;
-    glfwGetFramebufferSize(m_window, &w, &h);
+	glfwGetFramebufferSize(m_window, &w, &h);
 
-    // Check for discrepancy between window/frame buffer (high DPI display)
-    int ww, hh;
-    glfwGetWindowSize(m_window, &ww, &hh);
-    float retinaScale = w / ww;
+	// Check for discrepancy between window/frame buffer (high DPI display)
+	int ww, hh;
+	glfwGetWindowSize(m_window, &ww, &hh);
+	float retinaScale = w / ww;
 
 	/////////////////////////////////////
 	// First render to the custom framebuffer
