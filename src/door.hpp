@@ -20,6 +20,11 @@ public:
 
     bool is_light_dynamic() const override { return false; }
 
+    void set_screen_pos(vec2 position) {
+        m_screen_pos.x = position.x;
+        m_screen_pos.y = position.y - texture.height/2 + 124;
+    }
+
     EntityColor get_color() const override { return EntityColor({1.0, 1.0, 1.0, 1.0}); }
 
     void set_lit(bool lit) override {}

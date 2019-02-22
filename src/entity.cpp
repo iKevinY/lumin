@@ -66,7 +66,7 @@ bool Entity::init(int x_pos, int y_pos) {
 	CollisionManager::GetInstance().RegisterEntity(this);
 
 	m_screen_pos.x = (float) x_pos;
-	m_screen_pos.y = (float) y_pos;
+	m_screen_pos.y = (float) y_pos - hr + 64;
 
 	return true;
 }
@@ -149,7 +149,7 @@ vec2 Entity::get_screen_pos() const {
 }
 
 void Entity::set_screen_pos(vec2 position){
-	m_screen_pos = position;
+    m_screen_pos = position;
 }
 
 // Returns the local bounding coordinates scaled by the current size of the entity

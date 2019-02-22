@@ -48,12 +48,12 @@ public:
 
 	ParametricLines calculate_static_equations() const;
 
-private:
-    // Window coordinates
-	vec2 m_screen_pos; // Screen coordinates
+// Screen coordinates
     // 1.f in each dimension. 1.f is as big as the associated texture
 protected:
     vec2 m_scale;
     vec2 m_position;
     Texture texture;
+// Window coordinates
+vec2 m_screen_pos;
 };
