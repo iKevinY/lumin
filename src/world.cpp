@@ -114,7 +114,7 @@ bool World::update(float elapsed_ms)
 	glfwGetFramebufferSize(m_window, &w, &h);
 	vec2 screen = { (float)w, (float)h };
 
-	if (m_player.update(elapsed_ms)){
+	if (m_player.update(elapsed_ms) && m_exit_door->get_is_on()){
 	    next_level();
 	};
 
@@ -224,6 +224,7 @@ bool World::add_tile(int x_pos, int y_pos, StaticTile tile) {
 			// TODO: add fog entity
 			break;
 	    case DOOR:
+	    	// assumes there will only be one exit door per level
 	        m_exit_door = (Door*) new Door();
 			if (m_exit_door->init(x_pos * BLOCK_SIZE, y_pos * BLOCK_SIZE)) {
 				m_entities.emplace_back(m_exit_door);

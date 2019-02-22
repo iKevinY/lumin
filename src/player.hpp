@@ -18,7 +18,7 @@ public:
 
 	// Update player position
 	// ms represents the number of milliseconds elapsed from the previous update() call
-	// returns whether or not player has reached the next level
+	// returns whether or not player has reached the door to the next level
 	bool update(float ms);
 
 	// Renders the player
