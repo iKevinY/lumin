@@ -136,11 +136,6 @@ vec2 Player::get_screen_pos()const
 	return m_screen_pos;
 }
 
-vec2 Player::get_size()const {
-	return vec2{(float) playerWidth, (float) playerHeight };
-}
-
-
 void Player::move(vec2 off)
 {
 	m_position.x += off.x; m_position.y += off.y;

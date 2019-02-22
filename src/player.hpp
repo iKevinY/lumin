@@ -27,8 +27,6 @@ public:
 	// Returns the current player position
 	vec2 get_position()const;
 
-	vec2 get_size()const;
-
 	vec2 get_screen_pos()const;
 
 	// Moves the player's position by the specified offset
