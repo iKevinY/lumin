@@ -102,6 +102,7 @@ void World::destroy()
 	for (Entity* entity : m_entities) {
 		entity->destroy();
 	}
+	m_exit_door->destroy();
 
 	m_entities.clear();
 	glfwDestroyWindow(m_window);
@@ -172,6 +173,12 @@ void World::draw() {
 		entity->draw(projection_2D);
 	}
 
+	float screen_pos_x = m_exit_door->get_position().x - m_player.get_position().x + m_player.get_screen_pos().x;
+	float screen_pos_y = m_exit_door->get_position().y - m_player.get_position().y + m_player.get_screen_pos().y;
+	vec2 screen_pos = {screen_pos_x, screen_pos_y};
+	m_exit_door->set_screen_pos(screen_pos);
+	m_exit_door->draw(projection_2D);
+
 	/////////////////////
 	// Truely render to the screen
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
@@ -227,10 +234,7 @@ bool World::add_tile(int x_pos, int y_pos, StaticTile tile) {
 	    case DOOR:
 	    	// assumes there will only be one exit door per level
 	        m_exit_door = (Door*) new Door();
-			if (m_exit_door->init(x_pos * BLOCK_SIZE, y_pos * BLOCK_SIZE)) {
-				m_entities.emplace_back(m_exit_door);
-				return true;
-			}
+			m_exit_door->init(x_pos * BLOCK_SIZE, y_pos * BLOCK_SIZE);
 	        break;
 		case SWITCH:
 			level_entity = (Switch*) new Switch();
