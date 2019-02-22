@@ -18,7 +18,8 @@ public:
 
 	// Update player position
 	// ms represents the number of milliseconds elapsed from the previous update() call
-	void update(float ms);
+	// returns whether or not player has reached the next level
+	bool update(float ms);
 
 	// Renders the player
 	void draw(const mat3& projection, const float screen_w, const float screen_h);

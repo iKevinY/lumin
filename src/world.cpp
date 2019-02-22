@@ -4,6 +4,7 @@
 #include "glass.hpp"
 #include "switch.hpp"
 #include "CollisionManager.hpp"
+#include "door.hpp"
 
 // stlib
 #include <string.h>
@@ -113,7 +114,9 @@ bool World::update(float elapsed_ms)
 	glfwGetFramebufferSize(m_window, &w, &h);
 	vec2 screen = { (float)w, (float)h };
 
-	m_player.update(elapsed_ms);
+	if (m_player.update(elapsed_ms)){
+	    next_level();
+	};
 
 	return true;
 }
@@ -190,6 +193,11 @@ void World::draw() {
 	glfwSwapBuffers(m_window);
 }
 
+void World::next_level() {
+    // TODO
+    std::cout << "going to next level" << std::endl;
+}
+
 // Should the game be over ?
 bool World::is_over()const
 {
@@ -215,8 +223,16 @@ bool World::add_tile(int x_pos, int y_pos, StaticTile tile) {
 		case FOG:
 			// TODO: add fog entity
 			break;
+	    case DOOR:
+	        m_exit_door = (Door*) new Door();
+			if (m_exit_door->init(x_pos * BLOCK_SIZE, y_pos * BLOCK_SIZE)) {
+				m_entities.emplace_back(m_exit_door);
+				return true;
+			}
+	        break;
 		case SWITCH:
 			level_entity = (Switch*) new Switch();
+            ((Switch*) level_entity)->set_switchable_entity(m_exit_door);
 			break;
 	}
 	if (!level_entity) {
@@ -256,9 +272,9 @@ void World::create_base_level() {
 void World::print_grid(std::vector<std::vector<char>>& grid) {
 	for (std::vector<char> row : grid) {
     for (char cell : row) {
-      std::cout << cell << " ";
+      // std::cout << cell << " ";
     }
-    std::cout << std::endl;
+    // std::cout << std::endl;
   }
 }
 
@@ -270,6 +286,7 @@ void World::create_level(std::vector<std::vector<char>>& grid) {
 	tile_map[LIGHTWALL] = '-';
 	tile_map[FOG] = '~';
 	tile_map[SWITCH] = '1';
+	tile_map[DOOR] = '|';
 
 	for (std::size_t i = 0; i < grid.size(); i++) {
 		for (std::size_t j = 0; j < grid[i].size(); j++) {

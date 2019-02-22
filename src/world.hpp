@@ -5,6 +5,7 @@
 #include "player.hpp"
 #include "entity.hpp"
 #include "screen.hpp"
+#include "door.hpp"
 
 // stlib
 #include <vector>
@@ -33,6 +34,9 @@ public:
 
 	// Renders our scene
 	void draw();
+
+	// Go to the next level
+	void next_level();
 
 	// Should the game be over ?
 	bool is_over()const;
@@ -65,6 +69,7 @@ private:
 
 	// Game entities
 	Player m_player;
+	Door* m_exit_door;
 	std::vector<Entity*> m_entities;
 
 	float m_current_speed;
