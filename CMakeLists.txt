@@ -54,7 +54,7 @@ set(SOURCE_FILES
         src/CollisionManager.hpp
         src/switch.hpp src/door.hpp
         src/switchable_entity.hpp
-        src/switchable_entity.cpp)
+        src/switchable_entity.cpp src/door.cpp)
 
 add_executable(${PROJECT_NAME} ${SOURCE_FILES})
 target_include_directories(${PROJECT_NAME} PUBLIC src/)

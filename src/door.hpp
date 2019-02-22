@@ -1,6 +1,7 @@
 #pragma once
 
 #include "switchable_entity.hpp"
+#include "CollisionManager.hpp"
 
 class Door : public SwitchableEntity {
 public:
@@ -23,4 +24,7 @@ public:
 
     void set_lit(bool lit) override {}
 
+    bool get_player_in(vec2 player_pos);
+private:
+    bool m_is_player_in;
 };

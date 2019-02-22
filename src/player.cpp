@@ -46,7 +46,7 @@ void Player::destroy()
 }
 
 // Called on each frame by World::update()
-bool Player::update(float ms)
+void Player::update(float ms)
 {
 	const float WALK_SPEED = 60.f;
 	const float GROUND_FRICTION = 45.f;
@@ -103,13 +103,6 @@ bool Player::update(float ms)
 	{
 		m_y_velocity = 0.f;
 	}
-
-	for (auto &it : collisionResult.entitiesHit) {
-		if (dynamic_cast<const Door*>(it.entity) != nullptr) {
-			return true;
-		}
-	}
-	return false;
 }
 
 void Player::draw(const mat3& projection, const float screen_w, const float screen_h)
@@ -142,6 +135,11 @@ vec2 Player::get_screen_pos()const
 {
 	return m_screen_pos;
 }
+
+vec2 Player::get_size()const {
+	return vec2{(float) playerWidth, (float) playerHeight };
+}
+
 
 void Player::move(vec2 off)
 {

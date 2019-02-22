@@ -19,13 +19,15 @@ public:
 	// Update player position
 	// ms represents the number of milliseconds elapsed from the previous update() call
 	// returns whether or not player has reached the door to the next level
-	bool update(float ms);
+	void update(float ms);
 
 	// Renders the player
 	void draw(const mat3& projection, const float screen_w, const float screen_h);
 
 	// Returns the current player position
 	vec2 get_position()const;
+
+	vec2 get_size()const;
 
 	vec2 get_screen_pos()const;
 

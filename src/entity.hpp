@@ -49,8 +49,11 @@ public:
 	ParametricLines calculate_static_equations() const;
 
 private:
-	Texture texture;
-	vec2 m_position; // Window coordinates
+    // Window coordinates
 	vec2 m_screen_pos; // Screen coordinates
-	vec2 m_scale; // 1.f in each dimension. 1.f is as big as the associated texture
+    // 1.f in each dimension. 1.f is as big as the associated texture
+protected:
+    vec2 m_scale;
+    vec2 m_position;
+    Texture texture;
 };

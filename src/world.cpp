@@ -114,7 +114,8 @@ bool World::update(float elapsed_ms)
 	glfwGetFramebufferSize(m_window, &w, &h);
 	vec2 screen = { (float)w, (float)h };
 
-	if (m_player.update(elapsed_ms) && m_exit_door->get_is_on()){
+	m_player.update(elapsed_ms);
+	if (m_exit_door->get_player_in(m_player.get_position()) && m_exit_door->get_is_on()){
 	    next_level();
 	};
 
