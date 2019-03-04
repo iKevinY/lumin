@@ -5,12 +5,11 @@
 
 class Door : public Entity {
 public:
-    ~Door() override { Entity::destroy(); }
-
     const char* get_texture_path() const override { return textures_path("door_closed.png"); }
     const char* get_lit_texture_path() const override { return textures_path("door_open.png"); }
 
-    void activate() override { set_lit(true); };
+    // Light up the door when it's activated (likely by a linked switch)
+    void activate() override { set_lit(true); }
 
     // Offset door texture to align with ground
     void set_screen_pos(vec2 position) {
