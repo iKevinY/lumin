@@ -121,12 +121,12 @@ void World::destroy()
 
 	m_player.destroy();
 	for (Entity* entity : m_entities) {
-	    entity->destroy();
+	    delete entity;
 	}
 	m_entities.clear();
 
 	for (Firefly* firefly : m_fireflies) {
-		firefly->destroy();
+		delete firefly;
 	}
 	m_fireflies.clear();
 	m_screen.destroy();
@@ -146,6 +146,7 @@ bool World::update(float elapsed_ms) {
 			if (Door* door = dynamic_cast<Door*>(entity)) {
 			    if (door->get_lit() && door->is_player_inside(&m_player)) {
 			    	update_level();
+			    	return true;
 			    }
 			}
 		}
@@ -371,6 +372,10 @@ void World::create_current_level() {
 
 				Entity* entity_2 = dynamicEntities.find(charVector[2])->second;
 
+				if (!entity_1 || !entity_2) {
+					continue;
+				}
+
 				entity_1->register_entity(entity_2);
 
 				// Door logic!
@@ -434,11 +439,11 @@ void World::reset_game() {
 	int w, h;
 	glfwGetWindowSize(m_window, &w, &h);
 	for (Entity* entity : m_entities) {
-	    entity->destroy();
+		delete entity;
 	}
 	m_entities.clear();
 	for (Firefly* firefly : m_fireflies) {
-	    firefly->destroy();
+		delete firefly;
 	}
 	m_fireflies.clear();
 	m_player.destroy();
