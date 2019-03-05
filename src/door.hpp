@@ -17,7 +17,5 @@ public:
         m_screen_pos.y = position.y - texture->height/2 + 124;
     }
 
-    bool get_player_in(vec2 player_pos);
-private:
-    bool m_is_player_in;
+    bool is_player_inside(Player* player_pos);
 };

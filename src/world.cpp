@@ -145,7 +145,7 @@ bool World::update(float elapsed_ms) {
 
 			// If one of our entities is a door, check for player collision
 			if (Door* door = dynamic_cast<Door*>(entity)) {
-			    if (door->get_player_in(m_player.get_position()) && door->get_lit()) {
+			    if (door->get_lit() && door->is_player_inside(&m_player)) {
 			    	update_level();
 			    }
 			}
