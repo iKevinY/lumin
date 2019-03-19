@@ -34,6 +34,9 @@ public:
 
 	void setZPressed(bool tf);
 
+	// See whether the player is pressing the jump button so doors know whether or not to trigger the next level
+	bool getZPressed();
+
 	void setPlayerPosition(vec2 pos);
 
 	vec2 getPlayerDimensions() {

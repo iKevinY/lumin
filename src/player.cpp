@@ -141,6 +141,10 @@ void Player::setZPressed(bool tf) {
 	m_is_z_pressed = tf;
 }
 
+bool Player::getZPressed() {
+	return m_is_z_pressed;
+}
+
 void Player::setLeftPressed(bool tf) {
 	m_is_left_pressed = tf;
 	if (tf) {
